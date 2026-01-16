@@ -1,11 +1,17 @@
+#------------------------------
+# whisper가 출력한 원시 텍스트 후처리 모듈
+#------------------------------
+
 import re
 
+# 말버릇 목록, 의미 없는 발화 제거
 FILLERS = ["uh", "um", "erm"]
 
 def normalize_text(text):
+    # 소문자 통일
     text = text.lower()
 
-    # 숫자 단순 정규화 (확장 가능)
+    # 숫자 표기 단순 정규화 (확장 가능)
     text = re.sub(r"\bzero\b", "0", text)
 
     # 특수기호 통일
