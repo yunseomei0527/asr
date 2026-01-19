@@ -5,14 +5,14 @@
 #------------------------------
 
 import time
-import evaluate
+import eval
 
 # hugging face evaluate 라이브러리 사용
 # 표준 ASR 평가 지표 제공
 # WER: Word Error Rate: 문자 단위 오류율
 # CER: Character Error Rate: 단어 단위 오류율
-wer_metric = evaluate.load("wer")
-cer_metric = evaluate.load("cer")
+wer_metric = eval.load("wer")
+cer_metric = eval.load("cer")
 
 def compute_metrics(preds, refs):
     wer = wer_metric.compute(predictions=preds, references=refs)
