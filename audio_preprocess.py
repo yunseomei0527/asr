@@ -8,6 +8,9 @@ import soundfile as sf
 import json
 import re
 
+from asr.postprocess import normalize_text
+
+
 TARGET_SR = 16000
 MAX_CHUNK_SEC = 30
 OVERLAP_SEC = 3
