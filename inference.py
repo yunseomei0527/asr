@@ -34,7 +34,7 @@ def run_asr(audio_path):
 
     return final_text, rtf
 '''
-'''
+
 def run_asr(audio_path):
     # 전처리 전 원본 오디오 길이 계산(RTF 계산용)
     audio, sr = librosa.load(audio_path, sr=None)
@@ -56,10 +56,10 @@ def run_asr(audio_path):
     rtf = elapsed / audio_duration
 
     return chunk_texts, rtf
+
+
+
 '''
-
-
-
 def run_asr_with_eval(audio_path, transcript_json_path):
     # ----------------------
     # 오디오 길이 (RTF)
@@ -103,3 +103,4 @@ def run_asr_with_eval(audio_path, transcript_json_path):
     metrics["RTF"] = rtf
 
     return pred_text, ref_text, metrics
+'''

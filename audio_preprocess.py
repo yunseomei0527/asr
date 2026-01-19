@@ -8,8 +8,6 @@ import soundfile as sf
 import json
 import re
 
-from asr.postprocess import normalize_text
-
 
 TARGET_SR = 16000
 MAX_CHUNK_SEC = 30
@@ -32,7 +30,7 @@ def load_audio(path):
 
     return audio, TARGET_SR
 
-
+'''
 #------------------------------
 # 자막 파일 로드 함수
 #------------------------------
@@ -51,6 +49,7 @@ def load_reference_text(json_path):
 
     ref_text = " ".join(texts)
     return ref_text
+'''
 
 #------------------------------
 # 무음 구간 제거 함수
