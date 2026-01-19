@@ -55,6 +55,8 @@ def run_asr(audio_path):
 
     return chunk_texts, rtf
 '''
+from asr.audio_preprocess import load_reference_text
+from asr.eval import compute_metrics
 
 def run_asr_with_eval(audio_path, transcript_json_path):
     # ----------------------
