@@ -5,7 +5,7 @@
 #------------------------------
 
 import time
-import eval
+import evaluate
 
 # hugging face evaluate 라이브러리 사용
 # 표준 ASR 평가 지표 제공
