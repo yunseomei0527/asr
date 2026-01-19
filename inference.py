@@ -5,9 +5,11 @@
 import time
 import librosa
 
-from asr.audio_preprocess import preprocess_audio
+from asr.audio_preprocess import preprocess_audio, load_reference_text
 from asr.model import WhisperASR
 from asr.postprocess import normalize_text
+from asr.eval import compute_metrics
+
 '''
 def run_asr(audio_path):
     # 전처리 전 원본 오디오 길이 계산(RTF 계산용)
@@ -55,8 +57,8 @@ def run_asr(audio_path):
 
     return chunk_texts, rtf
 '''
-from asr.audio_preprocess import load_reference_text
-from asr.eval import compute_metrics
+
+
 
 def run_asr_with_eval(audio_path, transcript_json_path):
     # ----------------------
