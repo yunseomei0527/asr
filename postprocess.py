@@ -5,7 +5,7 @@
 import re
 
 # 말버릇 목록, 의미 없는 발화 제거
-FILLERS = ["uh", "um", "erm"]
+FILLERS = []
 
 def normalize_text(text):
     # 소문자 통일

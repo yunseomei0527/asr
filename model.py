@@ -19,32 +19,34 @@ class WhisperASR:
     #------------------------------
     # 핵심 추론 함수
     #------------------------------
-    def transcribe(self, audio_chunks, language="en"):
-        texts = []
+def transcribe(self, audio_chunks, language="ko"):
+    texts = []
 
-        for chunk in audio_chunks:
-            # chunk 단위 처리 루프(whisper의 30초 입력 제한)
-            inputs = self.processor(
-                chunk,
-                sampling_rate=16000,
-                return_tensors="pt"
-            )
+    forced_decoder_ids = self.processor.get_decoder_prompt_ids(
+        language=language,
+        task="transcribe"
+    )
 
-            input_features = inputs.input_features.to(DEVICE)
+    for chunk in audio_chunks:
+        inputs = self.processor(
+            chunk,
+            sampling_rate=16000,
+            return_tensors="pt"
+        )
 
-            predicted_ids = self.model.generate(
-                input_features,
-                language=language,
-                task="transcribe"
-            )
+        input_features = inputs.input_features.to(DEVICE)
 
-            text = self.processor.batch_decode(
-                # 토큰 ID -> 텍스트
-                predicted_ids,
-                skip_special_tokens=True
-            )[0]
-            
-            #chunk 결과 병합
-            texts.append(text)
+        predicted_ids = self.model.generate(
+            input_features,
+            forced_decoder_ids=forced_decoder_ids
+        )
 
-        return " ".join(texts)
+        text = self.processor.batch_decode(
+            predicted_ids,
+            skip_special_tokens=True
+        )[0]
+
+        texts.append(text)
+
+    return " ".join(texts)
+
