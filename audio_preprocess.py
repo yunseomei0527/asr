@@ -50,7 +50,7 @@ def load_reference_text(json_path):
         texts.append(text)
 
     ref_text = " ".join(texts)
-    return normalize_text(ref_text)
+    return ref_text
 
 #------------------------------
 # 무음 구간 제거 함수
