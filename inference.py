@@ -5,10 +5,9 @@
 import time
 import librosa
 
-from asr.audio_preprocess import preprocess_audio, load_reference_text
+from asr.audio_preprocess import preprocess_audio
 from asr.model import WhisperASR
 from asr.postprocess import normalize_text
-from asr.metrics import compute_metrics
 
 '''
 def run_asr(audio_path):
