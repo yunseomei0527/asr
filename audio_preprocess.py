@@ -5,6 +5,8 @@
 import librosa
 import numpy as np
 import soundfile as sf
+import json
+import re
 
 TARGET_SR = 16000
 MAX_CHUNK_SEC = 30
@@ -26,6 +28,26 @@ def load_audio(path):
         audio = librosa.resample(audio, orig_sr=sr, target_sr=TARGET_SR)
 
     return audio, TARGET_SR
+
+
+#------------------------------
+# 자막 파일 로드 함수
+#------------------------------
+def load_reference_text(json_path):
+    with open(json_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    terms = data["video"]["term"]
+
+    texts = []
+    for t in terms:
+        text = t["transcription"]
+        # @이름1 같은 토큰 제거 (AI Hub 특성)
+        text = re.sub(r"@이름\d+", "", text)
+        texts.append(text)
+
+    ref_text = " ".join(texts)
+    return normalize_text(ref_text)
 
 #------------------------------
 # 무음 구간 제거 함수
