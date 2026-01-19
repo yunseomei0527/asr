@@ -8,7 +8,7 @@ import librosa
 from asr.audio_preprocess import preprocess_audio, load_reference_text
 from asr.model import WhisperASR
 from asr.postprocess import normalize_text
-from asr.evaluate import compute_metrics
+from asr.eval import compute_metrics
 
 '''
 def run_asr(audio_path):
